@@ -1,0 +1,884 @@
+{
+ "titulo": "La Fuga",
+ "unidad": "metros",
+ "alto_muro": 4.2,
+ "zonas": {
+  "A": {
+   "nombre": "Boca del túnel",
+   "funcion": "Entrada y tutorial",
+   "x0": 2,
+   "x1": 22,
+   "z0": 2,
+   "z1": 10
+  },
+  "B": {
+   "nombre": "Galería de bombas",
+   "funcion": "Válvula 1 y fugas",
+   "x0": 22,
+   "x1": 50,
+   "z0": 1,
+   "z1": 11
+  },
+  "C": {
+   "nombre": "Pozo de drenaje",
+   "funcion": "Salto sobre el pozo",
+   "x0": 50,
+   "x1": 60,
+   "z0": 1,
+   "z1": 11
+  },
+  "D": {
+   "nombre": "Compuerta",
+   "funcion": "Válvula 2 y gate",
+   "x0": 51,
+   "x1": 61,
+   "z0": 15,
+   "z1": 39
+  },
+  "E": {
+   "nombre": "Cámara de la compuerta",
+   "funcion": "Rueda de cierre",
+   "x0": 49,
+   "x1": 63,
+   "z0": 39,
+   "z1": 53
+  }
+ },
+ "zonas_lista": [
+  {
+   "id": "A",
+   "nombre": "Boca del túnel",
+   "funcion": "Entrada y tutorial",
+   "x0": 2,
+   "x1": 22,
+   "z0": 2,
+   "z1": 10
+  },
+  {
+   "id": "B",
+   "nombre": "Galería de bombas",
+   "funcion": "Válvula 1 y fugas",
+   "x0": 22,
+   "x1": 50,
+   "z0": 1,
+   "z1": 11
+  },
+  {
+   "id": "C",
+   "nombre": "Pozo de drenaje",
+   "funcion": "Salto sobre el pozo",
+   "x0": 50,
+   "x1": 60,
+   "z0": 1,
+   "z1": 11
+  },
+  {
+   "id": "D",
+   "nombre": "Compuerta",
+   "funcion": "Válvula 2 y gate",
+   "x0": 51,
+   "x1": 61,
+   "z0": 15,
+   "z1": 39
+  },
+  {
+   "id": "E",
+   "nombre": "Cámara de la compuerta",
+   "funcion": "Rueda de cierre",
+   "x0": 49,
+   "x1": 63,
+   "z0": 39,
+   "z1": 53
+  }
+ ],
+ "pozo": {
+  "x0": 52,
+  "x1": 58,
+  "z0": 1,
+  "z1": 11
+ },
+ "pisos": [
+  {
+   "p": [
+    37.0,
+    -0.15,
+    6.0
+   ],
+   "s": [
+    30.0,
+    0.3,
+    10.0
+   ]
+  },
+  {
+   "p": [
+    59.0,
+    -0.15,
+    6.0
+   ],
+   "s": [
+    2.0,
+    0.3,
+    10.0
+   ]
+  },
+  {
+   "p": [
+    12.0,
+    -0.15,
+    6.0
+   ],
+   "s": [
+    20.0,
+    0.3,
+    8.0
+   ]
+  },
+  {
+   "p": [
+    56.5,
+    -0.15,
+    32.0
+   ],
+   "s": [
+    3.0,
+    0.3,
+    42.0
+   ]
+  },
+  {
+   "p": [
+    53.0,
+    -0.15,
+    34.0
+   ],
+   "s": [
+    4.0,
+    0.3,
+    38.0
+   ]
+  },
+  {
+   "p": [
+    59.5,
+    -0.15,
+    34.0
+   ],
+   "s": [
+    3.0,
+    0.3,
+    38.0
+   ]
+  },
+  {
+   "p": [
+    50.0,
+    -0.15,
+    46.0
+   ],
+   "s": [
+    2.0,
+    0.3,
+    14.0
+   ]
+  },
+  {
+   "p": [
+    62.0,
+    -0.15,
+    46.0
+   ],
+   "s": [
+    2.0,
+    0.3,
+    14.0
+   ]
+  }
+ ],
+ "muros": [
+  {
+   "p": [
+    56.0,
+    2.1,
+    53.0
+   ],
+   "s": [
+    14.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    38.5,
+    2.1,
+    11.0
+   ],
+   "s": [
+    33.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    59.0,
+    2.1,
+    11.0
+   ],
+   "s": [
+    2.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    12.0,
+    2.1,
+    2.0
+   ],
+   "s": [
+    20.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    12.0,
+    2.1,
+    10.0
+   ],
+   "s": [
+    20.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    41.0,
+    2.1,
+    1.0
+   ],
+   "s": [
+    38.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    53.0,
+    2.1,
+    15.0
+   ],
+   "s": [
+    4.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    59.5,
+    2.1,
+    15.0
+   ],
+   "s": [
+    3.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    50.0,
+    2.1,
+    39.0
+   ],
+   "s": [
+    2.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    62.0,
+    2.1,
+    39.0
+   ],
+   "s": [
+    2.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    63.0,
+    2.1,
+    46.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    14.0
+   ]
+  },
+  {
+   "p": [
+    58.0,
+    2.1,
+    13.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    4.0
+   ]
+  },
+  {
+   "p": [
+    61.0,
+    2.1,
+    27.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    24.0
+   ]
+  },
+  {
+   "p": [
+    49.0,
+    2.1,
+    46.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    14.0
+   ]
+  },
+  {
+   "p": [
+    51.0,
+    2.1,
+    27.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    24.0
+   ]
+  },
+  {
+   "p": [
+    60.0,
+    2.1,
+    6.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    10.0
+   ]
+  },
+  {
+   "p": [
+    2.0,
+    2.1,
+    6.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    8.0
+   ]
+  },
+  {
+   "p": [
+    55.0,
+    2.1,
+    13.0
+   ],
+   "s": [
+    0.3,
+    4.2,
+    4.0
+   ]
+  },
+  {
+   "p": [
+    22.0,
+    2.1,
+    1.5
+   ],
+   "s": [
+    0.3,
+    4.2,
+    1.0
+   ]
+  },
+  {
+   "p": [
+    22.0,
+    2.1,
+    10.5
+   ],
+   "s": [
+    0.3,
+    4.2,
+    1.0
+   ]
+  },
+  {
+   "p": [
+    52.0,
+    2.1,
+    39.0
+   ],
+   "s": [
+    6.0,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "p": [
+    60.0,
+    2.1,
+    39.0
+   ],
+   "s": [
+    6.0,
+    4.2,
+    0.3
+   ]
+  }
+ ],
+ "techos": [
+  {
+   "p": [
+    41.0,
+    4.2,
+    6.0
+   ],
+   "s": [
+    38.0,
+    0.3,
+    10.0
+   ]
+  },
+  {
+   "p": [
+    12.0,
+    4.2,
+    6.0
+   ],
+   "s": [
+    20.0,
+    0.3,
+    8.0
+   ]
+  },
+  {
+   "p": [
+    56.5,
+    4.2,
+    32.0
+   ],
+   "s": [
+    3.0,
+    0.3,
+    42.0
+   ]
+  },
+  {
+   "p": [
+    53.0,
+    4.2,
+    34.0
+   ],
+   "s": [
+    4.0,
+    0.3,
+    38.0
+   ]
+  },
+  {
+   "p": [
+    59.5,
+    4.2,
+    34.0
+   ],
+   "s": [
+    3.0,
+    0.3,
+    38.0
+   ]
+  },
+  {
+   "p": [
+    50.0,
+    4.2,
+    46.0
+   ],
+   "s": [
+    2.0,
+    0.3,
+    14.0
+   ]
+  },
+  {
+   "p": [
+    62.0,
+    4.2,
+    46.0
+   ],
+   "s": [
+    2.0,
+    0.3,
+    14.0
+   ]
+  }
+ ],
+ "plataformas": [
+  {
+   "p": [
+    53.5,
+    -0.1,
+    5.0
+   ],
+   "s": [
+    2.2,
+    0.3,
+    3.2
+   ]
+  },
+  {
+   "p": [
+    56.5,
+    -0.05,
+    7.0
+   ],
+   "s": [
+    2.2,
+    0.3,
+    3.2
+   ]
+  }
+ ],
+ "interactivos": [
+  {
+   "id": "valvula_1",
+   "tipo": "valvula",
+   "zona": "B",
+   "x": 49.4,
+   "y": 1.15,
+   "z": 8.0,
+   "giro": 90,
+   "funcion": "Primera condicion de la compuerta",
+   "animacion": "La rueda gira 90 grados",
+   "sonido": "Golpe metalico y agua"
+  },
+  {
+   "id": "valvula_2",
+   "tipo": "valvula",
+   "zona": "D",
+   "x": 60.4,
+   "y": 1.15,
+   "z": 26.0,
+   "giro": 90,
+   "funcion": "Segunda condicion de la compuerta",
+   "animacion": "La rueda gira 90 grados",
+   "sonido": "Golpe metalico y agua"
+  },
+  {
+   "id": "puerta",
+   "tipo": "puerta",
+   "zona": "D",
+   "x": 56.5,
+   "y": 1.5,
+   "z": 39.0,
+   "giro": 0,
+   "funcion": "Gate: solo abre con las dos valvulas",
+   "animacion": "La hoja sube 2,5 m",
+   "sonido": "Motor y chirrido"
+  },
+  {
+   "id": "rueda",
+   "tipo": "rueda",
+   "zona": "E",
+   "x": 62.4,
+   "y": 1.2,
+   "z": 45.0,
+   "giro": 0,
+   "funcion": "Cierra la compuerta y detiene el agua",
+   "animacion": "Giro continuo de la rueda",
+   "sonido": "Agua que cesa y campana"
+  }
+ ],
+ "fugas": [
+  {
+   "x": 12.0,
+   "y": 1.6,
+   "z": 2.0
+  },
+  {
+   "x": 26.0,
+   "y": 1.9,
+   "z": 1.0
+  },
+  {
+   "x": 34.0,
+   "y": 1.3,
+   "z": 11.0
+  },
+  {
+   "x": 44.0,
+   "y": 1.7,
+   "z": 1.0
+  },
+  {
+   "x": 51.0,
+   "y": 1.8,
+   "z": 22.0
+  },
+  {
+   "x": 51.0,
+   "y": 1.4,
+   "z": 32.0
+  }
+ ],
+ "luces": [
+  {
+   "x": 6,
+   "y": 3.6,
+   "z": 6,
+   "color": "ambar",
+   "rango": 14,
+   "intensidad": 2.2
+  },
+  {
+   "x": 24,
+   "y": 3.6,
+   "z": 6,
+   "color": "ambar",
+   "rango": 16,
+   "intensidad": 2.4
+  },
+  {
+   "x": 40,
+   "y": 3.6,
+   "z": 6,
+   "color": "ambar",
+   "rango": 16,
+   "intensidad": 2.4
+  },
+  {
+   "x": 55,
+   "y": 3.6,
+   "z": 8,
+   "color": "ambar",
+   "rango": 14,
+   "intensidad": 2.2
+  },
+  {
+   "x": 56,
+   "y": 3.6,
+   "z": 22,
+   "color": "ambar",
+   "rango": 16,
+   "intensidad": 2.4
+  },
+  {
+   "x": 56,
+   "y": 3.6,
+   "z": 36,
+   "color": "rojo",
+   "rango": 14,
+   "intensidad": 2.6
+  },
+  {
+   "x": 56,
+   "y": 3.6,
+   "z": 46,
+   "color": "rojo",
+   "rango": 16,
+   "intensidad": 2.6
+  }
+ ],
+ "agua": {
+  "inicio": -3.0,
+  "ritmo": 0.01,
+  "por_fuga": 0.0025,
+  "maximo": 0.03
+ },
+ "entrada": {
+  "x": 4.0,
+  "z": 6.0
+ },
+ "salida": {
+  "x": 62.0,
+  "z": 45.0
+ },
+ "ruta": [
+  {
+   "x": 4.0,
+   "z": 6.0
+  },
+  {
+   "x": 18.0,
+   "z": 6.0
+  },
+  {
+   "x": 28.0,
+   "z": 6.0
+  },
+  {
+   "x": 46.0,
+   "z": 6.0
+  },
+  {
+   "x": 51.0,
+   "z": 6.0
+  },
+  {
+   "x": 53.5,
+   "z": 5.0
+  },
+  {
+   "x": 56.5,
+   "z": 7.0
+  },
+  {
+   "x": 59.5,
+   "z": 6.0
+  },
+  {
+   "x": 56.5,
+   "z": 12.0
+  },
+  {
+   "x": 56.5,
+   "z": 20.0
+  },
+  {
+   "x": 59.0,
+   "z": 26.0
+  },
+  {
+   "x": 56.5,
+   "z": 32.0
+  },
+  {
+   "x": 56.5,
+   "z": 38.0
+  },
+  {
+   "x": 56.5,
+   "z": 42.0
+  },
+  {
+   "x": 61.0,
+   "z": 45.5
+  }
+ ],
+ "decisiones": [
+  {
+   "x": 28.0,
+   "z": 6.0,
+   "texto": "Sellar o correr"
+  },
+  {
+   "x": 51.0,
+   "z": 6.0,
+   "texto": "Que plataforma"
+  },
+  {
+   "x": 56.5,
+   "z": 20.0,
+   "texto": "Valvula 2 o puerta"
+  }
+ ],
+ "beats": [
+  {
+   "beat": "Llegada",
+   "zona": "A",
+   "jugador": "Camina hacia la luz del fondo mientras el agua sube",
+   "intencion": "Presentar la amenaza y el objetivo sin una sola linea de texto"
+  },
+  {
+   "beat": "Primera fuga",
+   "zona": "A",
+   "jugador": "Dispara al sello de una tuberia y el chorro se corta",
+   "intencion": "Ensenar la mecanica principal con una consecuencia visible"
+  },
+  {
+   "beat": "Galeria",
+   "zona": "B",
+   "jugador": "Sella fugas y gira la valvula 1",
+   "intencion": "Primera presion: cada fuga sin sellar acelera el agua"
+  },
+  {
+   "beat": "Pozo",
+   "zona": "C",
+   "jugador": "Salta dos plataformas sobre el hueco",
+   "intencion": "Riesgo fisico: caer termina la partida sin enemigos"
+  },
+  {
+   "beat": "Compuerta",
+   "zona": "D",
+   "jugador": "Gira la valvula 2 y abre la puerta",
+   "intencion": "Recompensa por explorar: la puerta solo cede con las dos valvulas"
+  },
+  {
+   "beat": "Cierre",
+   "zona": "E",
+   "jugador": "Gira la rueda y el agua empieza a bajar",
+   "intencion": "Alivio: el esfuerzo del jugador cambia el nivel de forma visible"
+  }
+ ],
+ "tabla_interactivos": [
+  {
+   "elemento": "Valvula 1",
+   "zona": "B",
+   "funcion": "Primera condicion de la compuerta",
+   "animacion": "Giro de 90 grados",
+   "sonido": "Golpe metalico y agua"
+  },
+  {
+   "elemento": "Valvula 2",
+   "zona": "D",
+   "funcion": "Segunda condicion de la compuerta",
+   "animacion": "Giro de 90 grados",
+   "sonido": "Golpe metalico y agua"
+  },
+  {
+   "elemento": "Puerta de compuerta",
+   "zona": "D",
+   "funcion": "Gate: solo abre con las dos valvulas",
+   "animacion": "Sube 2,5 m",
+   "sonido": "Motor y chirrido"
+  },
+  {
+   "elemento": "Rueda de cierre",
+   "zona": "E",
+   "funcion": "Detiene el agua y termina el nivel",
+   "animacion": "Giro continuo",
+   "sonido": "Agua que cesa y campana"
+  },
+  {
+   "elemento": "Fugas (disparo)",
+   "zona": "A-D",
+   "funcion": "Si no se sellan, el agua sube mas rapido",
+   "animacion": "El chorro se corta",
+   "sonido": "Chorro y siseo"
+  }
+ ]
+}
