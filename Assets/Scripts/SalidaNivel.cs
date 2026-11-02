@@ -23,7 +23,7 @@ public class SalidaNivel : MonoBehaviour
 
     void Update()
     {
-        var j = Object.FindFirstObjectByType<Jugador>();
+        var j = Object.FindAnyObjectByType<Jugador>();
         if (j == null || avisado) return;
         if (Vector3.Distance(j.transform.position, transform.position) < 3.5f)
         {

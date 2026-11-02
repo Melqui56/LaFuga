@@ -28,12 +28,12 @@ public class GestorNivel : MonoBehaviour
     void Start()
     {
         nivelAgua = aguaBase;
-        if (jugador == null) jugador = Object.FindFirstObjectByType<Jugador>();
+        if (jugador == null) jugador = Object.FindAnyObjectByType<Jugador>();
 
         // la lista no se serializa: en Play hay que volver a llenarla o las
         // valvulas, la puerta y la rueda quedan muertas
         interactivos.Clear();
-        interactivos.AddRange(Object.FindObjectsByType<Interactivo>(FindObjectsSortMode.None));
+        interactivos.AddRange(Object.FindObjectsByType<Interactivo>(FindObjectsInactive.Exclude));
         var clip = Resources.Load<AudioClip>("agua_ambiente");
         if (clip == null)
         {

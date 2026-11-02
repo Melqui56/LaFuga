@@ -18,8 +18,8 @@ public class BotGrabacion : MonoBehaviour
 
     void Start()
     {
-        jugador = Object.FindFirstObjectByType<Jugador>();
-        gestor = Object.FindFirstObjectByType<GestorNivel>();
+        jugador = Object.FindAnyObjectByType<Jugador>();
+        gestor = Object.FindAnyObjectByType<GestorNivel>();
         camara = jugador != null ? jugador.camara : Camera.main;
         Directory.CreateDirectory(carpeta);
         lienzo = new Texture2D(ancho, alto, TextureFormat.RGB24, false);

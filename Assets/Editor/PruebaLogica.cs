@@ -10,8 +10,8 @@ public static class PruebaLogica
     public static void Probar()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/LaFuga.unity");
-        var gestor = Object.FindFirstObjectByType<GestorNivel>();
-        var interactivos = Object.FindObjectsByType<Interactivo>(FindObjectsSortMode.None);
+        var gestor = Object.FindAnyObjectByType<GestorNivel>();
+        var interactivos = Object.FindObjectsByType<Interactivo>(FindObjectsInactive.Exclude);
         Debug.Log("PRUEBA interactivos encontrados: " + interactivos.Length);
         foreach (var it in interactivos)
             Debug.Log("PRUEBA " + it.id + " tipo " + it.tipo + " en " + it.transform.position);
