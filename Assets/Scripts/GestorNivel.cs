@@ -15,6 +15,9 @@ public class GestorNivel : MonoBehaviour
 
     public Jugador jugador;
     public Fuga[] fugas;
+    public Transform compuertaColector;
+    public Transform puntoControl;
+    public SaludJugador salud;
 
     readonly List<Interactivo> interactivos = new List<Interactivo>();
     int valvulas;
@@ -22,6 +25,8 @@ public class GestorNivel : MonoBehaviour
     float nivelAgua;
     float velocidadActual;
     string estado = "jugando";
+    bool compuertaCerrada;
+    float alturaCompuerta;
     float temporizador;
     AudioSource ambiente;
 
@@ -77,10 +82,58 @@ public class GestorNivel : MonoBehaviour
         if (mejor != null) mejor.Activar();
     }
 
+    public int Valvulas => valvulas;
+    public int FugasSelladas => fugasSelladas;
+    public int FugasTotales => fugas == null ? 0 : fugas.Length;
+    public bool CompuertaCerrada => compuertaCerrada;
+    public string Estado => estado;
+
+    public float AguaSobrePies()
+    {
+        if (jugador == null) return 0f;
+        return nivelAgua - (jugador.transform.position.y - 0.85f);
+    }
+
+    public string Objetivo()
+    {
+        if (compuertaCerrada) return "Cruza el colector sin que te atrapen y sal por la escotilla verde";
+        if (valvulas < 2) return "Sella las fugas (clic) y gira las dos valvulas (E)";
+        return "Abre la puerta de la compuerta y gira la rueda de cierre";
+    }
+
     public void CerrarCompuerta()
     {
-        if (estado != "jugando") return;
+        if (estado != "jugando" || compuertaCerrada) return;
+        compuertaCerrada = true;
+        if (compuertaColector != null) alturaCompuerta = compuertaColector.position.y;
+        Debug.Log("COMPUERTA CERRADA: se abre el colector");
+    }
+
+    public void Escapar()
+    {
+        if (estado != "jugando" || !compuertaCerrada) return;
         estado = "completado";
+        temporizador = 0f;
+        if (jugador != null) jugador.Bloquear(true);
+        Debug.Log("ESCAPE COMPLETADO");
+    }
+
+    public void DerrotaPorGuardia()
+    {
+        if (estado != "jugando") return;
+        if (compuertaCerrada && puntoControl != null && jugador != null)
+        {
+            var cc = jugador.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+            jugador.transform.position = puntoControl.position;
+            if (cc != null) cc.enabled = true;
+            if (salud != null) salud.Restaurar();
+            foreach (var g in Object.FindObjectsByType<EnemigoIA>(FindObjectsInactive.Exclude))
+                g.Reiniciar();
+            Debug.Log("REAPARECE EN EL PUNTO DE CONTROL");
+            return;
+        }
+        estado = "atrapado";
         temporizador = 0f;
         if (jugador != null) jugador.Bloquear(true);
     }
@@ -89,7 +142,14 @@ public class GestorNivel : MonoBehaviour
     {
         if (aguaVisual == null) return;
 
-        if (estado == "jugando")
+        if (estado == "jugando" && compuertaCerrada)
+        {
+            nivelAgua = Mathf.MoveTowards(nivelAgua, aguaBase - 0.5f, Time.deltaTime * 0.4f);
+            if (compuertaColector != null && compuertaColector.position.y < alturaCompuerta + 4.2f)
+                compuertaColector.position += Vector3.up * Time.deltaTime * 1.4f;
+            if (jugador != null && jugador.transform.position.y < -6f) DerrotaPorGuardia();
+        }
+        else if (estado == "jugando")
         {
             int abiertas = 0;
             foreach (var f in fugas) if (f != null && !f.sellada) abiertas++;
@@ -131,7 +191,8 @@ public class GestorNivel : MonoBehaviour
         if (x < 50f) return 1;      // galeria
         if (x < 60f && z < 11f) return 2;  // pozo
         if (z < 39f) return 3;      // compuerta
-        return 4;                   // camara
+        if (z < 53f) return 4;      // camara
+        return 5;                   // colector
     }
 
     void Derrota()
@@ -151,8 +212,8 @@ public class GestorNivel : MonoBehaviour
     {
         if (estado != "jugando")
         {
-            Color c = estado == "ahogado" ? new Color(0.45f, 0.02f, 0.02f, 0.55f)
-                                          : new Color(0.02f, 0.14f, 0.06f, 0.45f);
+            Color c = estado == "completado" ? new Color(0.02f, 0.14f, 0.06f, 0.45f)
+                                             : new Color(0.45f, 0.02f, 0.02f, 0.55f);
             GUI.color = c;
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
             GUI.color = Color.white;
@@ -163,7 +224,8 @@ public class GestorNivel : MonoBehaviour
                 normal = { textColor = Color.white }
             };
             GUI.Label(new Rect(0, Screen.height * 0.42f, Screen.width, Screen.height * 0.16f),
-                      estado == "ahogado" ? "EL AGUA TE ALCANZO" : "COMPUERTA CERRADA",
+                      estado == "ahogado" ? "EL AGUA TE ALCANZO"
+                      : estado == "atrapado" ? "TE ATRAPO UN GUARDIA" : "ESCAPASTE DEL COLECTOR",
                       estilo);
         }
     }
