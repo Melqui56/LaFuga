@@ -68,6 +68,20 @@ public static class HerramientasACA2
         EditorApplication.isPlaying = true;
     }
 
+    [MenuItem("La Fuga/Build Windows")]
+    public static void BuildWindows()
+    {
+        var opciones = new BuildPlayerOptions
+        {
+            scenes = new[] { ESCENA },
+            locationPathName = "Builds/Windows/LaFuga.exe",
+            target = BuildTarget.StandaloneWindows64,
+            options = BuildOptions.None,
+        };
+        var r = BuildPipeline.BuildPlayer(opciones);
+        Debug.Log("BUILD " + r.summary.result + " " + r.summary.totalSize + " bytes, errores " + r.summary.totalErrors);
+    }
+
     [MenuItem("La Fuga/Build Linux")]
     public static void BuildLinux()
     {
