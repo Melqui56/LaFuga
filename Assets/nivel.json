@@ -714,10 +714,10 @@
   }
  ],
  "agua": {
-  "inicio": -3.0,
-  "ritmo": 0.01,
+  "inicio": -0.1,
+  "ritmo": 0.011,
   "por_fuga": 0.0025,
-  "maximo": 0.03
+  "maximo": 0.026
  },
  "entrada": {
   "x": 4.0,
@@ -793,17 +793,20 @@
   {
    "x": 28.0,
    "z": 6.0,
-   "texto": "Sellar o correr"
+   "texto": "¿Sellar fugas o correr?",
+   "detalle": "Sellar frena el agua; correr gana tiempo"
   },
   {
    "x": 51.0,
    "z": 6.0,
-   "texto": "Que plataforma"
+   "texto": "¿Cómo cruzar el pozo?",
+   "detalle": "Dos plataformas: saltar corto o largo"
   },
   {
    "x": 56.5,
    "z": 20.0,
-   "texto": "Valvula 2 o puerta"
+   "texto": "¿Válvula 2 o puerta?",
+   "detalle": "La puerta no cede sin las dos válvulas"
   }
  ],
  "beats": [
@@ -863,7 +866,7 @@
    "elemento": "Puerta de compuerta",
    "zona": "D",
    "funcion": "Gate: solo abre con las dos valvulas",
-   "animacion": "Sube 2,5 m",
+   "animacion": "Sube 2,6 m",
    "sonido": "Motor y chirrido"
   },
   {

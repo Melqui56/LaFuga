@@ -45,7 +45,7 @@ public static class ConstructorNivel
 
         var luces = Grupo("LUCES", raiz);
         CrearLuces(n, luces);
-        RenderSettings.ambientLight = new Color(0.24f, 0.25f, 0.28f);
+        RenderSettings.ambientLight = new Color(0.30f, 0.30f, 0.33f);
         RenderSettings.fog = true;
         RenderSettings.fogMode = FogMode.Linear;
         RenderSettings.fogColor = new Color(0.04f, 0.05f, 0.07f);
@@ -67,14 +67,14 @@ public static class ConstructorNivel
     static Dictionary<string, Material> Materiales()
     {
         var d = new Dictionary<string, Material>();
-        d["piso"] = Mate("Piso", new Color(0.52f, 0.52f, 0.50f), 0.06f);
-        d["muro"] = Mate("Muro", new Color(0.31f, 0.32f, 0.33f), 0.05f);
+        d["piso"] = Mate("Piso", new Color(0.34f, 0.35f, 0.35f), 0.35f);
+        d["muro"] = Mate("Muro", new Color(0.42f, 0.38f, 0.33f), 0.08f);
         d["techo"] = Mate("Techo", new Color(0.20f, 0.21f, 0.22f), 0.03f);
         d["plataforma"] = Mate("Plataforma", new Color(0.62f, 0.62f, 0.58f), 0.08f);
         d["valvula"] = Mate("Valvula", new Color(0.92f, 0.68f, 0.10f), 0.35f);
         d["puerta"] = Mate("Puerta", new Color(0.85f, 0.42f, 0.08f), 0.30f);
         d["fuga"] = Mate("Fuga", new Color(0.20f, 0.65f, 0.95f), 0.55f);
-        d["agua"] = Transparente("Agua", new Color(0.16f, 0.55f, 0.72f, 0.55f));
+        d["agua"] = Transparente("Agua", new Color(0.10f, 0.45f, 0.62f, 0.72f));
         d["lampara"] = Emisivo("Lampara", new Color(1f, 0.85f, 0.55f));
         return d;
     }
@@ -324,9 +324,11 @@ public static class ConstructorNivel
         var linterna = new GameObject("Linterna").AddComponent<Light>();
         linterna.transform.SetParent(cam.transform, false);
         linterna.type = LightType.Spot;
-        linterna.range = 15f;
-        linterna.intensity = 1.7f;
-        linterna.spotAngle = 48f;
+        // haz ancho y suave: con 48 grados dejaba un disco blanco en el centro
+        linterna.range = 18f;
+        linterna.intensity = 0.75f;
+        linterna.spotAngle = 95f;
+        linterna.innerSpotAngle = 40f;
         linterna.color = new Color(1f, 0.94f, 0.82f);
 
         var j = go.AddComponent<Jugador>();

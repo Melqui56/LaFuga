@@ -60,8 +60,9 @@ public class BotGrabacion : MonoBehaviour
         yield return Ir(new Vector3(51.2f, 1f, 6f), false);
         yield return Ir(new Vector3(53.5f, 1f, 5f), false, true);
         yield return Ir(new Vector3(56.5f, 1f, 7f), false, true);
-        yield return Ir(new Vector3(59.3f, 1f, 6f), false, true);
-        yield return Esperar(0.5f);
+        yield return Ir(new Vector3(59.1f, 1f, 6.2f), false, true);
+        // al aterrizar se mira el paso norte, no el muro: se ve el camino que sigue
+        yield return Mirar(new Vector3(56.5f, 1.2f, 20f), 0.5f);
 
         // 6. compuerta: valvula 2
         yield return Ir(new Vector3(56.5f, 1f, 16f), false);
