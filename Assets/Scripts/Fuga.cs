@@ -27,7 +27,7 @@ public class Fuga : MonoBehaviour
             float s = 1f + Mathf.Sin(fase) * 0.08f;
             punto.material.color = new Color(0.35f, 0.75f, 0.95f, 0.85f);
             if (chorro != null)
-                chorro.transform.localScale = new Vector3(0.16f * s, 1.5f * s, 0.16f * s);
+                chorro.transform.localScale = new Vector3(0.28f * s, 1.6f * s, 0.28f * s);
         }
     }
 
@@ -36,6 +36,8 @@ public class Fuga : MonoBehaviour
         if (sellada) return;
         sellada = true;
         if (chorro != null) chorro.SetActive(false);
+        var charco = transform.Find("Charco");
+        if (charco != null) charco.gameObject.SetActive(false);
         if (fuente != null && sonido != null) fuente.PlayOneShot(sonido, 1f);
         if (gestor != null) gestor.FugaSellada();
     }

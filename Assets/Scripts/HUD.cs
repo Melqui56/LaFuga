@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour
     public Text textoAgua;
     public Text textoValvulas;
     public Text textoObjetivo;
+    public Text textoAviso;
     public Image destelloGolpe;
 
     static readonly Color SaludAlta = new Color(0.30f, 0.85f, 0.40f);
@@ -38,6 +39,7 @@ public class HUD : MonoBehaviour
             textoAgua.text = gestor.CompuertaCerrada ? "AGUA  CONTROLADA" : "AGUA  " + Mathf.RoundToInt(riesgo * 100f) + "%";
             textoValvulas.text = "VALVULAS " + gestor.Valvulas + "/2   FUGAS " + gestor.FugasSelladas + "/" + gestor.FugasTotales;
             textoObjetivo.text = gestor.Objetivo();
+            if (textoAviso != null) textoAviso.text = gestor.Mensaje;
         }
     }
 }

@@ -467,6 +467,14 @@ public static class ConstructorACA2
         var rtObj = hud.textoObjetivo.rectTransform;
         rtObj.anchorMin = Vector2.zero; rtObj.anchorMax = Vector2.one; rtObj.offsetMin = Vector2.zero; rtObj.offsetMax = Vector2.zero;
 
+        hud.textoAviso = Texto(go.transform, fuente, "", Vector2.zero, 28, TextAnchor.MiddleCenter);
+        var rtAviso = hud.textoAviso.rectTransform;
+        rtAviso.anchorMin = new Vector2(0.5f, 0.3f); rtAviso.anchorMax = new Vector2(0.5f, 0.3f);
+        rtAviso.pivot = new Vector2(0.5f, 0.5f); rtAviso.sizeDelta = new Vector2(1200f, 60f);
+        hud.textoAviso.color = new Color(1f, 0.85f, 0.35f);
+        var sombra = hud.textoAviso.gameObject.AddComponent<Outline>();
+        sombra.effectColor = new Color(0f, 0f, 0f, 0.8f);
+
         var mira = Imagen(go.transform, "Mira", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(6f, 6f), new Color(1f, 1f, 1f, 0.8f));
         mira.raycastTarget = false;
     }

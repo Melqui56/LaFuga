@@ -240,15 +240,22 @@ public static class ConstructorNivel
         var chorro = GameObject.CreatePrimitive(PrimitiveType.Cube);
         chorro.name = "Chorro";
         chorro.transform.SetParent(raiz, false);
-        chorro.transform.localScale = new Vector3(0.16f, 1.5f, 0.16f);
-        chorro.transform.localPosition = new Vector3(0f, -0.75f, 0f);
+        chorro.transform.localScale = new Vector3(0.28f, 1.6f, 0.28f);
+        chorro.transform.localPosition = new Vector3(0f, -0.8f, 0f);
         chorro.GetComponent<Renderer>().sharedMaterial = m;
         Object.DestroyImmediate(chorro.GetComponent<Collider>());
 
         var punto = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         punto.name = "Punto";
         punto.transform.SetParent(raiz, false);
-        punto.transform.localScale = Vector3.one * 0.28f;
+        punto.transform.localScale = Vector3.one * 0.5f;
+        var charco = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        charco.name = "Charco";
+        charco.transform.SetParent(raiz, false);
+        charco.transform.position = new Vector3(d.x, 0.02f, d.z);
+        charco.transform.localScale = new Vector3(1.4f, 0.01f, 1.4f);
+        charco.GetComponent<Renderer>().sharedMaterial = m;
+        Object.DestroyImmediate(charco.GetComponent<Collider>());
         punto.GetComponent<Renderer>().sharedMaterial = m;
 
         var t = raiz.gameObject.AddComponent<Fuga>();

@@ -67,7 +67,13 @@ public class Jugador : MonoBehaviour
 
         Ray rayo = new Ray(camara.transform.position, camara.transform.forward);
         RaycastHit golpe;
-        if (!Physics.Raycast(rayo, out golpe, alcanceDisparo)) return;
+        Vector3 boca = camara.transform.position + camara.transform.right * 0.25f - camara.transform.up * 0.2f;
+        if (!Physics.Raycast(rayo, out golpe, alcanceDisparo, ~0, QueryTriggerInteraction.Ignore))
+        {
+            Trazo(boca, rayo.GetPoint(alcanceDisparo));
+            return;
+        }
+        Trazo(boca, golpe.point);
 
         var fuga = golpe.collider.GetComponentInParent<Fuga>();
         if (fuga != null)
@@ -76,6 +82,21 @@ public class Jugador : MonoBehaviour
             return;
         }
         DejarMarca(golpe.point);
+    }
+
+    void Trazo(Vector3 desde, Vector3 hasta)
+    {
+        var go = new GameObject("Trazo sellador");
+        var lr = go.AddComponent<LineRenderer>();
+        lr.positionCount = 2;
+        lr.SetPosition(0, desde);
+        lr.SetPosition(1, hasta);
+        lr.startWidth = 0.06f;
+        lr.endWidth = 0.02f;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = new Color(1f, 0.9f, 0.4f, 0.9f);
+        lr.endColor = new Color(0.4f, 0.8f, 1f, 0.6f);
+        Destroy(go, 0.12f);
     }
 
     void DejarMarca(Vector3 punto)

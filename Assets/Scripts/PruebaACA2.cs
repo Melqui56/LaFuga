@@ -16,7 +16,11 @@ public class PruebaACA2 : MonoBehaviour
         foreach (var g in guardias)
             Debug.Log("PRUEBA " + g.name + " enNavMesh=" + g.GetComponent<UnityEngine.AI.NavMeshAgent>().isOnNavMesh);
 
+        float agua0 = gestor.AguaSobrePies();
         yield return new WaitForSeconds(3f);
+        Debug.Log("PRUEBA agua sobre pies: " + agua0.ToString("0.00") + " -> " + gestor.AguaSobrePies().ToString("0.00") + " m en 3 s, fugas visibles=" + Object.FindObjectsByType<Fuga>(FindObjectsInactive.Exclude).Length);
+        Object.FindAnyObjectByType<Fuga>().Sellarse();
+        Debug.Log("PRUEBA fugas selladas=" + gestor.FugasSelladas + " aviso='" + gestor.Mensaje + "'");
         foreach (var g in guardias)
             Debug.Log("PRUEBA patrulla " + g.name + " pos=" + g.transform.position + " estado=" + g.estadoActual);
 

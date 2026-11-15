@@ -62,11 +62,31 @@ public class GestorNivel : MonoBehaviour
 
     public void InteractivoUsado(Interactivo it)
     {
-        if (it.tipo == TipoInteractivo.Valvula) valvulas++;
+        if (it.tipo == TipoInteractivo.Valvula)
+        {
+            valvulas++;
+            nivelAgua = Mathf.Max(aguaBase, nivelAgua - 0.6f);
+            Avisar(valvulas < 2 ? "Valvula 1/2: el agua baja. Falta la segunda para abrir la puerta"
+                                : "Valvula 2/2: el agua baja y la puerta de la compuerta ya abre");
+        }
         Debug.Log("USADO " + it.id + " valvulas=" + valvulas);
     }
 
-    public void FugaSellada() { fugasSelladas++; }
+    public void FugaSellada()
+    {
+        fugasSelladas++;
+        Avisar("Fuga sellada: el agua sube mas lento");
+    }
+
+    public string Mensaje => Time.time < mensajeHasta ? mensaje : "";
+    string mensaje = "";
+    float mensajeHasta;
+
+    void Avisar(string texto)
+    {
+        mensaje = texto;
+        mensajeHasta = Time.time + 3.5f;
+    }
 
     public void InteractuarCerca()
     {
@@ -106,6 +126,7 @@ public class GestorNivel : MonoBehaviour
         if (estado != "jugando" || compuertaCerrada) return;
         compuertaCerrada = true;
         if (compuertaColector != null) alturaCompuerta = compuertaColector.position.y;
+        Avisar("Compuerta cerrada: el agua deja de subir y se abre el colector");
         Debug.Log("COMPUERTA CERRADA: se abre el colector");
     }
 
