@@ -457,8 +457,9 @@ public static class ConstructorACA2
         panel.rectTransform.pivot = new Vector2(0f, 1f);
         hud.textoSalud = Texto(panel.transform, fuente, "SALUD 100", new Vector2(20f, -14f), 26, TextAnchor.UpperLeft);
         Barra(panel.transform, new Vector2(20f, -50f), new Color(0.30f, 0.85f, 0.40f), out hud.barraSalud, out hud.rellenoSalud);
-        hud.textoAgua = Texto(panel.transform, fuente, "AGUA 0%", new Vector2(20f, -78f), 22, TextAnchor.UpperLeft);
+        hud.textoAgua = Texto(panel.transform, fuente, "AGUA  8%", new Vector2(20f, -78f), 22, TextAnchor.UpperLeft);
         Barra(panel.transform, new Vector2(20f, -110f), new Color(0.2f, 0.6f, 0.95f), out hud.barraAgua, out hud.rellenoAgua);
+        hud.barraAgua.localScale = new Vector3(0.08f, 1f, 1f);
         hud.textoValvulas = Texto(panel.transform, fuente, "VALVULAS 0/2   FUGAS 0/" + gestor.FugasTotales, new Vector2(20f, -132f), 20, TextAnchor.UpperLeft);
 
         var franja = Imagen(go.transform, "Franja objetivo", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -30f), new Vector2(900f, 54f), new Color(0f, 0f, 0f, 0.45f));
