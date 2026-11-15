@@ -36,7 +36,7 @@ public static class HerramientasACA2
         var jugador = Object.FindAnyObjectByType<Jugador>();
         jugador.transform.position = new Vector3(8f, 1.2f, 6f);
         jugador.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-        Foto(jugador.camara, "08_hud", jugador.camara.transform.position, jugador.camara.transform.position + new Vector3(0f, -0.25f, 1f));
+        Foto(jugador.camara, "08_hud", jugador.camara.transform.position, jugador.camara.transform.position + new Vector3(1f, -0.12f, 0f));
         Debug.Log("CAPTURAS LISTAS");
     }
 

@@ -27,7 +27,7 @@ public class Fuga : MonoBehaviour
             float s = 1f + Mathf.Sin(fase) * 0.08f;
             punto.material.color = new Color(0.35f, 0.75f, 0.95f, 0.85f);
             if (chorro != null)
-                chorro.transform.localScale = new Vector3(0.28f * s, 1.6f * s, 0.28f * s);
+                chorro.transform.localScale = new Vector3(0.2f * s, 1.6f * s, 0.2f * s);
         }
     }
 

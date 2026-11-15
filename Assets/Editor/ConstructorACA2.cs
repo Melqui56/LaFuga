@@ -17,7 +17,7 @@ public static class ConstructorACA2
     const float PISO_F = -1.5f;
 
     static Material mMuro, mPiso, mTecho, mCobertura, mTubo, mBarril, mFranja, mNegro, mCompuerta,
-                    mSalida, mPantalla, mGuardia, mVisor, mArma, mLampara;
+                    mSalida, mPantalla, mGuardia, mVisor, mArma, mLampara, mLetrero;
 
     [MenuItem("La Fuga/Construir ACA 2")]
     public static void Construir()
@@ -78,6 +78,7 @@ public static class ConstructorACA2
         mVisor = Brillo("G_Visor", new Color(0.2f, 0.9f, 0.4f), 2f);
         mArma = Mate("G_Arma", new Color(0.25f, 0.25f, 0.27f), 0.6f);
         mLampara = Brillo("F_Lampara", new Color(1f, 0.75f, 0.4f), 1.6f);
+        mLetrero = null;
     }
 
     static Material Mate(string nombre, Color c, float brillo)
@@ -164,7 +165,12 @@ public static class ConstructorACA2
         tm.characterSize = tam;
         tm.anchor = TextAnchor.MiddleCenter;
         tm.color = c;
-        go.GetComponent<MeshRenderer>().sharedMaterial = tm.font.material;
+        if (mLetrero == null)
+        {
+            mLetrero = new Material(Shader.Find("Sprites/Default")) { name = "F_Letrero", mainTexture = tm.font.material.mainTexture };
+            Guardar(mLetrero);
+        }
+        go.GetComponent<MeshRenderer>().sharedMaterial = mLetrero;
     }
 
     static Transform ConstruirColector(Transform raiz)
