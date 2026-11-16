@@ -2,8 +2,6 @@ using System;
 using System.IO;
 using UnityEngine;
 
-// Estructuras que reflejan exactamente nivel.json. La fuente de verdad del
-// nivel es un solo archivo: si cambia alla, cambia aqui sin tocar nada mas.
 [Serializable] public class Caja { public float[] p; public float[] s; }
 [Serializable] public class Zona { public string id, nombre, funcion; public float x0, x1, z0, z1; }
 [Serializable] public class Punto { public float x, z; }

@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Una fuga de agua en la pared. Se sella con el disparo: el chorro desaparece,
-// suena el sello y la subida del agua se frena.
 public class Fuga : MonoBehaviour
 {
     public GestorNivel gestor;
@@ -20,7 +18,6 @@ public class Fuga : MonoBehaviour
 
     void Update()
     {
-        // el chorro respira para que se vea de lejos
         if (!sellada && punto != null)
         {
             fase += Time.deltaTime * 6f;

@@ -37,7 +37,7 @@ public class HUD : MonoBehaviour
             barraAgua.localScale = new Vector3(gestor.CompuertaCerrada ? 0f : riesgo, 1f, 1f);
             rellenoAgua.color = Color.Lerp(new Color(0.2f, 0.6f, 0.95f), new Color(0.95f, 0.25f, 0.15f), riesgo);
             textoAgua.text = gestor.CompuertaCerrada ? "AGUA  CONTROLADA" : "AGUA  " + Mathf.RoundToInt(riesgo * 100f) + "%";
-            textoValvulas.text = "VALVULAS " + gestor.Valvulas + "/2   FUGAS " + gestor.FugasSelladas + "/" + gestor.FugasTotales;
+            textoValvulas.text = "VÁLVULAS " + gestor.Valvulas + "/2   FUGAS " + gestor.FugasSelladas + "/" + gestor.FugasTotales;
             textoObjetivo.text = gestor.Objetivo();
             if (textoAviso != null) textoAviso.text = gestor.Mensaje;
         }

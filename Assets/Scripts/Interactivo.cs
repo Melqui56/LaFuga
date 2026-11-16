@@ -2,8 +2,6 @@ using UnityEngine;
 
 public enum TipoInteractivo { Valvula, Puerta, Rueda }
 
-// Valvulas, puerta de compuerta y rueda de cierre. La animacion es movimiento
-// de la pieza (giro o desplazamiento) y siempre va con sonido.
 public class Interactivo : MonoBehaviour
 {
     public TipoInteractivo tipo;
@@ -14,7 +12,7 @@ public class Interactivo : MonoBehaviour
     public AudioClip sonido;
 
     public bool usado;
-    public float avance;          // 0 a 1, para animar
+    public float avance;
     float objetivo;
     Vector3 posicionInicial;
     bool animando;

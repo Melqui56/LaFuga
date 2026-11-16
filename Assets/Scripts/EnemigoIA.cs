@@ -96,7 +96,6 @@ public class EnemigoIA : MonoBehaviour
         }
     }
 
-    // La distancia sola deja ver a traves de los muros; el rayo exige linea de vision.
     bool LoVe()
     {
         Vector3 ojos = transform.position + Vector3.up * 1.4f;

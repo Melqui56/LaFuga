@@ -5,8 +5,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Construye la escena completa desde nivel.json. Idempotente: se puede correr
-// las veces que haga falta y siempre produce el mismo nivel.
 public static class ConstructorNivel
 {
     const string RUTA_ESCENA = "Assets/Scenes/LaFuga.unity";
@@ -62,8 +60,6 @@ public static class ConstructorNivel
                   " muros, " + n.techos.Length + " techos, " + n.interactivos.Length +
                   " interactivos, " + n.fugas.Length + " fugas.");
     }
-
-    // ------------------------------------------------------------------ piezas
     static Dictionary<string, Material> Materiales()
     {
         var d = new Dictionary<string, Material>();
@@ -130,8 +126,6 @@ public static class ConstructorNivel
             if (estatico) go.isStatic = true;
         }
     }
-
-    // ------------------------------------------------------------------ agua
     static Transform CrearAgua(Nivel n, Transform padre, Material m, GestorNivel juego)
     {
         var go = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -148,8 +142,6 @@ public static class ConstructorNivel
         juego.aguaMaxima = n.agua.maximo;
         return go.transform;
     }
-
-    // ------------------------------------------------------------------ props
     static void CrearInteractivo(InteractivoDato d, Transform padre, GestorNivel juego,
                                  Dictionary<string, Material> mats)
     {
@@ -304,13 +296,12 @@ public static class ConstructorNivel
             mr.material.SetColor("_EmissionColor", luz.color * 2f);
         }
     }
-
-    // ---------------------------------------------------------------- jugador
     static Jugador CrearJugador(Nivel n, Transform padre, GestorNivel juego)
     {
         var go = new GameObject("Jugador");
         go.transform.SetParent(padre, false);
         go.transform.position = new Vector3(n.entrada.x, 1.15f, n.entrada.z);
+        go.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
         var cc = go.AddComponent<CharacterController>();
         cc.height = 1.8f;
@@ -331,7 +322,6 @@ public static class ConstructorNivel
         var linterna = new GameObject("Linterna").AddComponent<Light>();
         linterna.transform.SetParent(cam.transform, false);
         linterna.type = LightType.Spot;
-        // haz ancho y suave: con 48 grados dejaba un disco blanco en el centro
         linterna.range = 18f;
         linterna.intensity = 0.75f;
         linterna.spotAngle = 95f;

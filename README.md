@@ -17,8 +17,9 @@ hasta la **escotilla verde**.
 Zonas: **A** Boca del túnel, **B** Galería de bombas, **C** Pozo de drenaje,
 **D** Compuerta, **E** Cámara de la compuerta, **F** Colector 3 y **G** Salida.
 
-Se pierde si el agua cubre al jugador, si cae al pozo o si los guardias le
-quitan toda la salud. La dificultad crece por tramo: el agua sube más rápido y
+Diez fugas y seis guardias reparten la presión por los pasillos. Se pierde si
+el agua cubre al jugador, si cae al pozo o si los guardias le quitan toda la
+salud. La dificultad crece por tramo: el agua sube más rápido y
 los guardias son más rápidos y ven más lejos. Al entrar al colector hay un
 punto de control.
 
@@ -31,7 +32,7 @@ punto de control.
 
 Controles: **WASD** moverse, **Shift** correr, **Espacio** saltar,
 **clic izquierdo** sellar fugas, **E** usar válvulas, puerta y rueda,
-**Esc** liberar el cursor.
+**Esc** o **P** abrir el menú (continuar, reiniciar o salir del juego).
 
 ## Scripts del juego
 
@@ -46,6 +47,7 @@ Controles: **WASD** moverse, **Shift** correr, **Espacio** saltar,
 | `SaludJugador.cs` | Salud del jugador |
 | `HUD.cs` | Salud, riesgo del agua, válvulas, fugas y objetivo actual |
 | `SalidaNivel.cs` | Escotilla de salida |
+| `MenuPausa.cs` | Pausa, reinicio y salida del juego |
 
 El guardia usa `Assets/ACA2/Guardia.controller`, con un Blend Tree 1D
 (*Locomocion*) controlado por el parámetro `Velocidad`.

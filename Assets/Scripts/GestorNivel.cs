@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Estado del nivel: el agua que sube, las valvulas, la puerta, la victoria y
-// la derrota. Sin este script no hay forma de perder ni de terminar.
 public class GestorNivel : MonoBehaviour
 {
     public Transform aguaVisual;
@@ -34,9 +32,8 @@ public class GestorNivel : MonoBehaviour
     {
         nivelAgua = aguaBase;
         if (jugador == null) jugador = Object.FindAnyObjectByType<Jugador>();
+        MenuPausa.Crear(this);
 
-        // la lista no se serializa: en Play hay que volver a llenarla o las
-        // valvulas, la puerta y la rueda quedan muertas
         interactivos.Clear();
         interactivos.AddRange(Object.FindObjectsByType<Interactivo>(FindObjectsInactive.Exclude));
         var clip = Resources.Load<AudioClip>("agua_ambiente");
@@ -175,8 +172,6 @@ public class GestorNivel : MonoBehaviour
             int abiertas = 0;
             foreach (var f in fugas) if (f != null && !f.sellada) abiertas++;
 
-            // la dificultad crece por tramo: el mismo numero de fugas pesa mas
-            // cuanto mas adentro esta el jugador
             float factor = 1f + 0.22f * Tramo();
             velocidadActual = Mathf.Min(aguaRitmo * factor + aguaPorFuga * abiertas * factor, aguaMaxima);
             nivelAgua += velocidadActual * Time.deltaTime;
@@ -192,7 +187,6 @@ public class GestorNivel : MonoBehaviour
         {
             nivelAgua = Mathf.MoveTowards(nivelAgua, aguaBase - 0.5f, Time.deltaTime * 0.6f);
             temporizador += Time.deltaTime;
-            if (temporizador > 4f) Reiniciar();
         }
         else
         {
@@ -208,12 +202,12 @@ public class GestorNivel : MonoBehaviour
         if (jugador == null) return 0;
         float x = jugador.transform.position.x;
         float z = jugador.transform.position.z;
-        if (x < 22f) return 0;      // boca del tunel
-        if (x < 50f) return 1;      // galeria
-        if (x < 60f && z < 11f) return 2;  // pozo
-        if (z < 39f) return 3;      // compuerta
-        if (z < 53f) return 4;      // camara
-        return 5;                   // colector
+        if (x < 22f) return 0;
+        if (x < 50f) return 1;
+        if (x < 60f && z < 11f) return 2;
+        if (z < 39f) return 3;
+        if (z < 53f) return 4;
+        return 5;
     }
 
     void Derrota()
@@ -224,7 +218,9 @@ public class GestorNivel : MonoBehaviour
         if (jugador != null) jugador.Bloquear(true);
     }
 
-    void Reiniciar()
+    public bool Completado { get { return estado == "completado"; } }
+
+    public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -245,8 +241,8 @@ public class GestorNivel : MonoBehaviour
                 normal = { textColor = Color.white }
             };
             GUI.Label(new Rect(0, Screen.height * 0.42f, Screen.width, Screen.height * 0.16f),
-                      estado == "ahogado" ? "EL AGUA TE ALCANZO"
-                      : estado == "atrapado" ? "TE ATRAPO UN GUARDIA" : "ESCAPASTE DEL COLECTOR",
+                      estado == "ahogado" ? "EL AGUA TE ALCANZÓ"
+                      : estado == "atrapado" ? "TE ATRAPÓ UN GUARDIA" : "ESCAPASTE DEL COLECTOR",
                       estilo);
         }
     }

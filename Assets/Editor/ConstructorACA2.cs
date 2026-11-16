@@ -8,8 +8,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-// Evoluciona el nivel del ACA 1 para el ACA 2: colector final, guardias con IA,
-// salud, HUD y Blend Tree. Corre despues de ConstructorNivel y es idempotente.
 public static class ConstructorACA2
 {
     const string ESCENA = "Assets/Scenes/LaFuga.unity";
@@ -59,8 +57,6 @@ public static class ConstructorACA2
         EditorSceneManager.SaveScene(escena);
         Debug.Log("ACA 2 CONSTRUIDO");
     }
-
-    // ------------------------------------------------------------ materiales
     static void Materiales()
     {
         mMuro = Mate("F_Muro", new Color(0.36f, 0.34f, 0.31f), 0.1f);
@@ -103,8 +99,6 @@ public static class ConstructorACA2
         AssetDatabase.CreateAsset(m, ruta);
         return m;
     }
-
-    // ------------------------------------------------------------ geometria
     static void QuitarMuroNorteCamara(Transform nivel)
     {
         foreach (var t in nivel.GetComponentsInChildren<Transform>())
@@ -245,8 +239,6 @@ public static class ConstructorACA2
         compuerta.isStatic = false;
         return compuerta.transform;
     }
-
-    // ------------------------------------------------------------ guardias
     struct DatoGuardia
     {
         public string nombre;
@@ -261,7 +253,11 @@ public static class ConstructorACA2
             new DatoGuardia { nombre = "Guardia 1 galeria", patrulla = 1.3f, persecucion = 3.0f, deteccion = 6f,
                 ruta = new[] { new Vector3(30f, 0f, 3.5f), new Vector3(44f, 0f, 3.5f), new Vector3(44f, 0f, 8.5f), new Vector3(30f, 0f, 8.5f) } },
             new DatoGuardia { nombre = "Guardia 2 compuerta", patrulla = 1.5f, persecucion = 3.4f, deteccion = 7f,
-                ruta = new[] { new Vector3(54f, 0f, 18f), new Vector3(54f, 0f, 34f) } },
+                ruta = new[] { new Vector3(55f, 0f, 18f), new Vector3(55f, 0f, 34f) } },
+            new DatoGuardia { nombre = "Guardia 5 entrada galeria", patrulla = 1.2f, persecucion = 2.8f, deteccion = 5f,
+                ruta = new[] { new Vector3(24f, 0f, 4f), new Vector3(28f, 0f, 4f), new Vector3(28f, 0f, 8f), new Vector3(24f, 0f, 8f) } },
+            new DatoGuardia { nombre = "Guardia 6 valvula", patrulla = 1.4f, persecucion = 3.2f, deteccion = 6.5f,
+                ruta = new[] { new Vector3(59.5f, 0f, 20f), new Vector3(59.5f, 0f, 33f) } },
             new DatoGuardia { nombre = "Guardia 3 colector", patrulla = 1.8f, persecucion = 4.0f, deteccion = 9f,
                 ruta = new[] { new Vector3(50f, PISO_F, 62f), new Vector3(63f, PISO_F, 62f), new Vector3(63f, PISO_F, 75f), new Vector3(50f, PISO_F, 75f) } },
             new DatoGuardia { nombre = "Guardia 4 pasarela", patrulla = 1.6f, persecucion = 3.8f, deteccion = 8f,
@@ -345,8 +341,6 @@ public static class ConstructorACA2
         t.localPosition = pos;
         return t;
     }
-
-    // ------------------------------------------------------------ animator
     static AnimatorController CrearAnimator()
     {
         var idle = Clip("Guardia_Quieto", 2f, true, new Dictionary<string, float[]> {
@@ -420,8 +414,6 @@ public static class ConstructorACA2
         for (int i = 0; i < c.keys.Length; i++) c.SmoothTangents(i, 0f);
         return c;
     }
-
-    // ------------------------------------------------------------ navmesh
     static void HornearNavMesh(Transform nivel, GameObject jugador, GameObject guardias)
     {
         var superficie = nivel.gameObject.AddComponent<NavMeshSurface>();
@@ -437,8 +429,6 @@ public static class ConstructorACA2
         AssetDatabase.CreateAsset(superficie.navMeshData, ruta);
         Debug.Log("NAVMESH HORNEADO");
     }
-
-    // ------------------------------------------------------------ HUD
     static void CrearHUD(Transform nivel, Jugador jugador, SaludJugador salud, GestorNivel gestor)
     {
         var go = new GameObject("HUD");

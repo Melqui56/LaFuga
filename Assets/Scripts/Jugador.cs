@@ -1,8 +1,5 @@
 using UnityEngine;
 
-// Movimiento, camara y disparo del jugador. Todo pasa por metodos publicos
-// (Mover, Mirar, IntentarDisparar) para que el bot de grabacion use exactamente
-// el mismo camino que el teclado y el raton.
 public class Jugador : MonoBehaviour
 {
     public Camera camara;
@@ -14,9 +11,11 @@ public class Jugador : MonoBehaviour
     public float gravedad = -19f;
     public float cooldown = 0.8f;
     public float alcanceDisparo = 14f;
+    public float sensibilidad = 1.6f;
 
     CharacterController cc;
     Vector3 velocidadVertical;
+    Vector3 velocidadPlana;
     float yaw, pitch;
     float ultimoDisparo = -99f;
     bool bloqueado;
@@ -27,15 +26,39 @@ public class Jugador : MonoBehaviour
         yaw = transform.eulerAngles.y;
     }
 
+    void Start()
+    {
+        BloquearCursor(true);
+    }
+
     void Update()
     {
-        if (bloqueado) return;
-        Mirar(Input.GetAxis("Mouse X") * 2.2f, Input.GetAxis("Mouse Y") * 2.2f);
-        Mover(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
+        if (bloqueado || MenuPausa.Abierto) return;
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            if (Input.GetMouseButtonDown(0)) BloquearCursor(true);
+            return;
+        }
+        float dx = Mathf.Clamp(Input.GetAxisRaw("Mouse X"), -25f, 25f);
+        float dy = Mathf.Clamp(Input.GetAxisRaw("Mouse Y"), -25f, 25f);
+        Mirar(dx * sensibilidad, dy * sensibilidad);
+        Mover(EntradaWASD(),
               Input.GetKey(KeyCode.LeftShift), Input.GetKeyDown(KeyCode.Space));
         if (Input.GetMouseButton(0)) IntentarDisparar();
         if (Input.GetKeyDown(KeyCode.E) && gestor != null) gestor.InteractuarCerca();
-        if (Input.GetKeyDown(KeyCode.Escape)) Cursor.lockState = CursorLockMode.None;
+    }
+
+    static Vector2 EntradaWASD()
+    {
+        float x = (Input.GetKey(KeyCode.D) ? 1f : 0f) - (Input.GetKey(KeyCode.A) ? 1f : 0f);
+        float y = (Input.GetKey(KeyCode.W) ? 1f : 0f) - (Input.GetKey(KeyCode.S) ? 1f : 0f);
+        return new Vector2(x, y);
+    }
+
+    public static void BloquearCursor(bool valor)
+    {
+        Cursor.lockState = valor ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !valor;
     }
 
     public void Mirar(float dx, float dy)
@@ -51,13 +74,15 @@ public class Jugador : MonoBehaviour
         Vector3 dir = transform.right * entrada.x + transform.forward * entrada.y;
         if (dir.sqrMagnitude > 1f) dir.Normalize();
         float v = correr ? velocidadCorrer : velocidad;
+        float aceleracion = cc.isGrounded ? 28f : 10f;
+        velocidadPlana = Vector3.MoveTowards(velocidadPlana, dir * v, aceleracion * Time.deltaTime);
 
         if (cc.isGrounded && velocidadVertical.y < 0f) velocidadVertical.y = -2f;
         if (saltar && cc.isGrounded)
             velocidadVertical.y = Mathf.Sqrt(2f * alturaSalto * -gravedad);
         velocidadVertical.y += gravedad * Time.deltaTime;
 
-        cc.Move((dir * v + velocidadVertical) * Time.deltaTime);
+        cc.Move((velocidadPlana + velocidadVertical) * Time.deltaTime);
     }
 
     public void IntentarDisparar()

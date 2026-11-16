@@ -60,14 +60,6 @@ public static class HerramientasACA2
         cam.transform.SetPositionAndRotation(anterior, rotAnterior);
     }
 
-    [MenuItem("La Fuga/Prueba ACA 2")]
-    public static void Prueba()
-    {
-        EditorSceneManager.OpenScene(ESCENA);
-        new GameObject("PRUEBA_ACA2").AddComponent<PruebaACA2>();
-        EditorApplication.isPlaying = true;
-    }
-
     [MenuItem("La Fuga/Build Windows")]
     public static void BuildWindows()
     {
